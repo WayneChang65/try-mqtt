@@ -29,6 +29,14 @@ cd try-mqtt
 npm install
 ```
 
+* 針對MQTT Broker設定以下環境變數(IP, Port, 使用者ID, 密碼)
+```
+BROKER_IP
+BROKER_PORT
+BROKER_UID
+BROKER_UPWD
+```
+
 * 透過以下格式輸入指令，執行Subscribe功能
 
 ```bash
