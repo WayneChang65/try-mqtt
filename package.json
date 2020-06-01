@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@waynechang65/fml-consolelog": "^1.1.0",
-    "async-mqtt": "^2.5.0"
+    "async-mqtt": "^2.5.0",
+    "systeminformation": "^4.26.5"
   }
 }
