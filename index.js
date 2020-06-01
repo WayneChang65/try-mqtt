@@ -1,6 +1,7 @@
 'use strict'
 const mqtt = require('async-mqtt');
 const fmlog = require('@waynechang65/fml-consolelog').log;
+const si = require('systeminformation');
 
 const BROKER_IP = process.env.MQTT_BROKER_IP;
 const BROKER_PORT = process.env.MQTT_BROKER_PORT;
@@ -40,12 +41,30 @@ function task_publish(_client, _samplingTime) {
 	});
 }
 
+function task_cpu_server(_client, _samplingTime, _device) {
+	fmlog('sys_msg', ['[ CPU Server Mode ]' , 'Sending... on ' + 'wayne65/' + _device]);
+	_client.on('connect', async () => {
+		try {
+			setInterval(async () => {
+				let data_cpuTemp = await si.cpuTemperature();
+				await _client.publish('wayne65/' + _device + '/cpu-temp/main', data_cpuTemp.main.toString());
+				await _client.publish('wayne65/' + _device + '/cpu-temp/max', data_cpuTemp.max.toString());
+			}, _samplingTime);
+		} catch (e) {
+			console.log(e)
+		}
+	});
+}
+
 switch (process.argv[2]) {
 	case 'subscribe':
 		task_subscribe(client);
 		break;
 	case 'publish':
 		task_publish(client, samplingTime);
+		break;
+	case 'cpu-server':
+		task_cpu_server(client, samplingTime, process.argv[4]);
 		break;
 	default:
 		break;
