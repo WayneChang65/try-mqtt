@@ -47,8 +47,10 @@ function task_cpu_server(_client, _samplingTime, _device) {
 		try {
 			setInterval(async () => {
 				let data_cpuTemp = await si.cpuTemperature();
+				let data_cpuLoad = await si.currentLoad();
 				await _client.publish('wayne65/' + _device + '/cpu-temp/main', data_cpuTemp.main.toString());
 				await _client.publish('wayne65/' + _device + '/cpu-temp/max', data_cpuTemp.max.toString());
+				await _client.publish('wayne65/' + _device + '/cpu-speed/current', data_cpuLoad.currentload.toString());
 			}, _samplingTime);
 		} catch (e) {
 			console.log(e)
