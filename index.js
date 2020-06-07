@@ -62,9 +62,10 @@ function task_cpu_server(_client, _samplingTime, _debug = undefined) {
 				let data_cpuTemp = await si.cpuTemperature();
 				let data_cpuLoad = await si.currentLoad();
 				let data_osInfo = await si.osInfo();
+				let temp = Math.floor(data_cpuTemp.main * 10) / 10;
 				let load = Math.floor(data_cpuLoad.currentload * 10) / 10;
 
-				await _client.publish('wayne65/' + data_osInfo.hostname + '/cpu-temp/main', data_cpuTemp.main.toString());
+				await _client.publish('wayne65/' + data_osInfo.hostname + '/cpu-temp/main', temp.toString());
 				await _client.publish('wayne65/' + data_osInfo.hostname + '/cpu-load/current', load.toString());
 
 				if (_debug) {
