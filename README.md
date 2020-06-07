@@ -5,14 +5,18 @@ try-mqtt 是一個超簡單的MQTT client，其中包含subscribe以及簡易pub
 try-mqtt is a quite simple MQTT client, which includes subscribe and publish functions. It is designed and used to test the MQTT connection.
 
 ![image](https://raw.githubusercontent.com/WayneChang65/try-mqtt/master/images/mqtt_main.gif)  
+![image](https://raw.githubusercontent.com/WayneChang65/try-mqtt/master/images/cpu-server-mode.gif)  
 
 ## 這專案能做什麼事？ (What can it do ?)
 
-* Subscribe某個MQTT Broker的某個Topic (目前Topic已在程式裏寫死，連到自己架設的Broker裏的 wayne65/# )  
-Subscribe to a topic of a MQTT Broker (Currently the topic has been hard-coded in the program and connected to the broker in my home)
+* **Subscribe Mode**：Subscribe某個MQTT Broker的某個Topic (目前Topic已在程式裏寫死，連到自己架設的Broker裏的 wayne65/# )  
+Subscribe Mode：Subscribe to a topic of a MQTT Broker (Currently the topic has been hard-coded in the program and connected to the broker in my home)  
 
-* Publish測試訊息到某個Broker。(目前Publish "It works!"到wayne65/test1 topic裏)  
-Publish test messages to a broker. (Currently publish "It works!" In wayne65/test1 topic)
+* **Publish Mode**：Publish測試訊息到某個Broker。(目前Publish "It works!"到wayne65/test1 topic裏)  
+Publish Mode：Publish test messages to a broker. (Currently publish "It works!" In wayne65/test1 topic)  
+
+* **Server Mode**：固定時間Publish到特定Broker。(目前Publish自己家裏的一台主機加一台樹莓派的CPU溫度跟負載)  
+Server Mode：publish messages to a broker. (Currently publish CPU temperature and load of my home servers)  
 
 ## 如何跑範例程式？ (How to run the example ?)
 
@@ -45,18 +49,25 @@ BROKER_IP
 BROKER_PORT
 BROKER_UID
 BROKER_UPWD
-```
+```  
 
 * 透過以下格式輸入指令，執行Subscribe功能  
-Run it for subscribe mode
+Run it for subscribe mode  
 
-```bash
-node index.js subscribe
-```
+```bash  
+node index.js subscribe  
+```  
 
 * 透過以下格式輸入指令，執行Publish功能。(後面100代表100ms publish一筆，數字可換)  
-Run it for publish mode (100 means sampling time, 100ms. Can be changed.)
+Run it for publish mode (100 means sampling time, 100ms. Can be changed.)  
 
-```bash
-node index.js publish 100
-```
+```bash  
+node index.js publish 100  
+```  
+
+* 透過以下格式輸入指令，執行Server功能。(後面1000代表1000ms publish一筆，數字可換。d代表debug mode，會顯示publish訊息，可省略)  
+Run it for server mode (1000 means sampling time, 100ms. Can be changed. d stands for debug mode and show publish messages which can be skiped)  
+
+```bash  
+node index.js cpu-server 1000 d  
+```  
