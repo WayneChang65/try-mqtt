@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@waynechang65/fml-consolelog": "^1.1.0",
-    "async-mqtt": "^2.5.0",
+    "async-mqtt": "^2.6.1",
     "systeminformation": "github:waynechang65/systeminformation"
   }
 }
