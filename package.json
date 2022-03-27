@@ -1,6 +1,6 @@
 {
   "name": "try-mqtt",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,6 @@
   "dependencies": {
     "@waynechang65/fml-consolelog": "^1.1.0",
     "async-mqtt": "^2.6.1",
-    "systeminformation": "github:waynechang65/systeminformation"
+    "systeminformation": "^5.11.9"
   }
 }
